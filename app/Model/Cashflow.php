@@ -73,4 +73,12 @@ class Cashflow extends AppModel {
 			),
 		),
 	);
+
+	public function calculateCashflow($data, $paydate) {
+		//hier komt de logica om Cashflows te berekenen
+
+		//test of we hier komen als we een invoice editeren
+		//die_dump('functie calculate Cashflow wordt aangeroepen');
+
+	}
 }

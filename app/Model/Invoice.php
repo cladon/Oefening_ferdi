@@ -122,5 +122,28 @@ private $paydateEdit;
 			'order' => ''
 		)
 	);
+
+	public function afterSave($created, $options = null) {
+
+		//aanduiden dat we met het model Cashflow gaan werken; om functies te kunnen gebuiken hierin (te vergelijken met uses in de Controllers)
+		//imort is een functie van de class App
+		App::import('Model','Cashflow');
+
+		//maak een nieuwe instance van Cashflow aan
+		$cashflow = new Cashflow();
+
+		//toon de gegevens uit het formulier (moet doorgegeven worden aan de functie)
+		//die_dump($this->data);
+		//die_dump($this->data['Invoice']['paydate']);
+
+		$paydate = $this->data['Invoice']['paydate'];
+
+		//functie aanroepen
+		$cashflow->calculateCashflow($this->data, $paydate);
+
+		//test om te zien of deze wordt aangesproken
+		//die_dump('Aftersave is aangesproken');
+		return true;
+}
 	
 }
