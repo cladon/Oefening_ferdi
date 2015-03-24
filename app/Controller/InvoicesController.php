@@ -268,19 +268,49 @@ class InvoicesController extends AppController {
 		$this->set(compact('companies', 'invoiceTypes'));
 	}
 
-function add() {
-	
-	
-	$companies = $this->Invoice->Company->find('list');
+
+	function add()
+	{
+
+
+		if($this->request->is('post')){
+			//die_dump($this->request->data);
+
+// Invoice factuur = new Invoice();
+			$this->Invoice->create();
+			//array meegeven aan de save functie, kolommen in database worden automatisch gemapt met keys in de 2de array
+			$this->Invoice->save($this->request->data);
+
+			//redirecten naar de functie index binnenin deze controller
+			$this->redirect(array('action'=>'index'));
+		}
+
+		$companies = $this->Invoice->Company->find('list');
 		$invoiceTypes = $this->Invoice->InvoiceType->find('list');
 		$this->set(compact('companies', 'invoiceTypes'));
-	
-}
+
+	}
 
 
-/**
- * delete method
- *
- */
-	
+	/**
+	 * delete method
+	 *
+	 */
+
+
+	function delete($id){
+		//id wordt meegegeven aan functie -> zie index.ctp van Invoices
+		//die_dump($this->request->data);
+
+		$this->Invoice->delete($id);
+		//redirecten naar de functie index binnenin deze controller
+		$this->redirect(array('action'=>'index'));
+
+		// Delete with array conditions similar to find()
+		//$this->Comment->deleteAll(array('Comment.spam' => true), false);
+
+
+	}
+
+
 }
