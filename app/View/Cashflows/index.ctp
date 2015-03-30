@@ -16,24 +16,40 @@
 	</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($cashflows as $cashflow): ?>
-	<tr>
-		<td><?php echo h($cashflow['Cashflow']['id']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['date']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['prio']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['amount']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['cashflow']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['type']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['type_identifier']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['created']); ?>&nbsp;</td>
-		<td><?php echo h($cashflow['Cashflow']['modified']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $cashflow['Cashflow']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $cashflow['Cashflow']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $cashflow['Cashflow']['id']), array(), __('Are you sure you want to delete # %s?', $cashflow['Cashflow']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
+
+	<?php foreach ($cashflows as $cashflow):
+                if ($cashflow['Cashflow']['cashflow'] < 50000)
+                   {
+                   if ($cashflow['Cashflow']['cashflow'] < 0)
+                      {
+                      ?>
+                      <tr BGCOLOR="#FF4500">
+                      <?php
+                      }
+                   else
+                      {
+                      ?>
+                      <tr BGCOLOR="#FFA500">
+                      <?php
+                      }
+                   }?>
+                <td><?php echo h($cashflow['Cashflow']['id']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['date']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['prio']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['amount']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['cashflow']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['type']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['type_identifier']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['created']); ?>&nbsp;</td>
+                <td><?php echo h($cashflow['Cashflow']['modified']); ?>&nbsp;</td>
+                <td class="actions">
+                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $cashflow['Cashflow']['id'])); ?>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $cashflow['Cashflow']['id'])); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $cashflow['Cashflow']['id']), array(), __('Are you sure you want to delete # %s?', $cashflow['Cashflow']['id'])); ?>
+                </td>
+            </tr>
+     <?php endforeach; ?>
+
 	</tbody>
 	</table>
 	<p>

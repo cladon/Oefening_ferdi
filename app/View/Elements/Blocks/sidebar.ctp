@@ -33,7 +33,17 @@
               <li> <a href="<?php echo Router::url(array('controller' => 'companies','action' => 'add'));?>">Add Companies </a> </li>
 
             </ul>
-        </li>  
+        </li>
+
+        <li class=""> <a href="javascript:;"> <i class="fa fa fa-windows"></i> <span class="title">Cashflows</span> <span class="arrow "></span> </a>
+                    <ul class="sub-menu">
+                      <li> <a href="<?php echo Router::url(array('controller' => 'cashflows','action' => 'index'));?>">Overview cashflows </a> </li>
+                      <li> <a href="<?php echo Router::url(array('controller' => 'cashflows','action' => 'add'));?>">Add cashflows </a> </li>
+
+                    </ul>
+                </li>
+
+
 
       <div class="clearfix"></div>
       <!-- END SIDEBAR MENU -->
